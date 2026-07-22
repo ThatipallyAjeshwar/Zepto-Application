@@ -154,3 +154,23 @@ let fetchCategories = () => {
   })
 }
 fetchCategories()
+
+//!Individual Category
+let categoryCards = document.querySelectorAll(".category-card")
+categoryCards.forEach((card) => {
+  card.addEventListener("click", () => {
+    let categoryName = card.querySelector("img").alt
+    sessionStorage.setItem("clickedCategory", categoryName)
+    fetchingIndividualCategoryData()
+    setTimeout(() => {
+      location.assign("./Category.html")
+    },2000)
+  })
+})
+
+async function fetchingIndividualCategoryData() {
+  let categoryName = sessionStorage.getItem("clickedCategory")
+  let response = await fetch(`https://dummyjson.com/products/category/${categoryName}`)
+  let { products } = await response.json()
+  localStorage.setItem("clickedCategoryData", JSON.stringify(products))
+}
