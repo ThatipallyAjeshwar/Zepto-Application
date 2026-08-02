@@ -101,3 +101,43 @@ maxPrice.addEventListener("input", () => {
   applyingFilters()
 })
 applyingFilters()
+
+//!Add Button Events
+function addButtonEvents() {
+  let addBtns = document.querySelectorAll(".addBtn")
+  addBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      let product = {
+        id: Number(btn.dataset.id),
+        title: btn.dataset.title,
+        price: Number(btn.dataset.price),
+        img: btn.dataset.img
+      }
+      addToCart(product)
+      displayingProducts(productDatas)
+    })
+  })
+}
+
+
+//!Increase Button Events
+function increaseButtonEvents() {
+  let increaseBtns = document.querySelectorAll(".incrementBtn")
+  increaseBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      incrementQuantity(Number(btn.dataset.id))
+      displayingProducts(productDatas)
+    })
+  })
+}
+
+//!Decrease Button Events
+function decreaseButtonEvents() {
+  let decreaseBtns = document.querySelectorAll(".decrementBtn")
+  decreaseBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      decrementQuantity(Number(btn.dataset.id))
+      displayingProducts(productDatas)
+    })
+  })
+}
